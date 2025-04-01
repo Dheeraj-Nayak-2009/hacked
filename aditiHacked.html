@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacked</title>
+  <style>
+    body {
+      background-color: black;
+      color: green;
+      font-family: "Courier New", monospace;
+      font-size: 20px;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Typing message styling */
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3vw; /* Use viewport width for scaling */
+      font-weight: bold;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+      white-space: normal;
+      overflow: hidden;
+      max-width: 90vw; /* Limit max width to 90% of the viewport width */
+      padding: 10px;
+      z-index: 10;
+    }
+
+    /* Console styling */
+    #console {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-size: 15px;
+    }
+
+    #console p {
+      animation: scroll 1s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    /* Mobile responsiveness adjustments */
+    @media (max-width: 768px) {
+      #message {
+        font-size: 3vw; /* Increase font size for small screens */
+        max-width: 100vw; /* Adjust max width for smaller screens */
+      }
+
+      #console {
+        font-size: 12px; /* Adjust console font size on mobile */
+      }
+    }
+
+    @media (max-width: 480px) {
+      #message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        color: red;
+        text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+        white-space: normal; /* Allow wrapping */
+        max-width: 80%; /* Limit the width to a percentage of the screen */
+        line-height: 1.2;
+        font-size: 8vw; /* Further increase font size for very small screens */
+        max-width: 70vw; /* Adjust max width for even smaller screens */
+      }
+
+      #console {
+        font-size: 10px; /* Further adjust console font size on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Typing animation message -->
+  <div id="message"></div>
+
+  <!-- Console area with pre-written messages -->
+  <div id="console">
+    <p>System Breach Detected...</p>
+    <p>Accessing files...</p>
+    <p>Decrypting passwords...</p>
+    <p>Bypassing firewall...</p>
+    <p>Uploading Data...</p>
+    <p>Injection Complete!</p>
+  </div>
+
+  <!-- Music in the background -->
+  <audio autoplay loop>
+    <source src="hacker_music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Typing Animation Script -->
+  <script>
+    const messages = [
+      "Aditi B Desai, You have been Hacked!",
+      "Age: 18yrs",
+      "Phone No: +91 9483131649",
+      "Accessing GPS Location...",
+      "Location: Kuvempunagar, Hanumanthapura, Tumakuru, Hanumanthapura, Tumkur - 572133",
+      "Retrieving Account Details...",
+      "Account no:xxxxxx636384"
+    ];
+    
+    let currentMessageIndex = 0;
+    let currentCharIndex = 0;
+    const messageElement = document.getElementById('message');
+
+    function typeMessage() {
+      if (currentCharIndex < messages[currentMessageIndex].length) {
+        messageElement.textContent += messages[currentMessageIndex].charAt(currentCharIndex);
+        currentCharIndex++;
+        setTimeout(typeMessage, 100); // Adjust typing speed (ms)
+      } else {
+        // Wait before starting to erase the message
+        setTimeout(eraseMessage, 2000);
+      }
+    }
+
+    function eraseMessage() {
+      if (currentCharIndex > 0) {
+        messageElement.textContent = messages[currentMessageIndex].substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        setTimeout(eraseMessage, 50); // Adjust erase speed (ms)
+      } else {
+        // Move to next message
+        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+        setTimeout(typeMessage, 500);
+      }
+    }
+
+    // Adding random characters to make the console appear more 'hacked'
+    const consoleText = [
+      'ERROR: Access Denied.',
+      'Accessing root directory...',
+      'Running diagnostics...',
+      'System overload...',
+      'HACKING COMPLETE.',
+      'Data transferred.'
+    ];
+    
+    let consoleDiv = document.getElementById('console');
+    
+    setInterval(function() {
+      let randomIndex = Math.floor(Math.random() * consoleText.length);
+      let newParagraph = document.createElement('p');
+      newParagraph.textContent = consoleText[randomIndex];
+      consoleDiv.appendChild(newParagraph);
+    }, 1500);
+
+    // Start the typing animation
+    typeMessage();
+  </script>
+</body>
+</html>
