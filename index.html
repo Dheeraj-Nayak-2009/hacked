@@ -127,15 +127,25 @@
     const messageElement = document.getElementById('message');
 
     function typeMessage() {
-      if (currentCharIndex < messages[currentMessageIndex].length) {
-        messageElement.textContent += messages[currentMessageIndex].charAt(currentCharIndex);
-        currentCharIndex++;
-        setTimeout(typeMessage, 100); // Adjust typing speed (ms)
-      } else {
-        // Wait before starting to erase the message
-        setTimeout(eraseMessage, 2000);
-      }
+  if (currentCharIndex < messages[currentMessageIndex].length) {
+    messageElement.textContent += messages[currentMessageIndex].charAt(currentCharIndex);
+    currentCharIndex++;
+    setTimeout(typeMessage, 100); // Adjust typing speed (ms)
+  } else {
+    // Wait before starting to erase the message
+    setTimeout(eraseMessage, 2000);
+
+    // If it's the last message, trigger redirect after typing is complete
+    if (currentMessageIndex === messages.length - 1) {
+      setTimeout(redirectToAnotherSite, 2000); // Adjust delay as needed
     }
+  }
+}
+
+function redirectToAnotherSite() {
+  window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Replace with the target URL
+}
+
 
     function eraseMessage() {
       if (currentCharIndex > 0) {
